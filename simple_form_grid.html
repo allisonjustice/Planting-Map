@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Aligned Form (3-Column Grid)</title>
+  <style>
+    :root {
+      --bg: #0b1f24;
+      --panel: #0f2c33;
+      --text: #e8fffb;
+      --muted: #9fe6d5;
+      --input-bg: #0d3840;
+      --border: #1f6a68;
+      --accent: #18a37a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    h1 { margin: 0 0 16px; font-size: 20px; color: var(--muted); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .form-grid label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+    .form-grid input,
+    .form-grid select {
+      width: 100%;
+      height: 48px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--input-bg);
+      color: var(--text);
+      outline: none;
+    }
+    .inline-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .full-width {
+      grid-column: span 3;
+    }
+    .btn {
+      width: 100%;
+      height: 56px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .full-width { grid-column: auto; }
+      .inline-3 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Inputs</h1>
+    <div class="form-grid">
+      <div>
+        <label>Location (ZIP Code)</label>
+        <input type="text" placeholder="29643" inputmode="numeric" />
+      </div>
+
+      <div>
+        <label>Planting Date</label>
+        <div class="inline-3">
+          <input type="number" placeholder="Month" aria-label="Month" />
+          <input type="number" placeholder="Day" aria-label="Day" />
+          <input type="number" placeholder="Year" aria-label="Year" />
+        </div>
+      </div>
+
+      <div class="full-width">
+        <button class="btn">Calculate Growth Timeline</button>
+      </div>
+
+      <div>
+        <label>Critical Photoperiod</label>
+        <div class="inline-3">
+          <input type="number" placeholder="Hours" value="13" aria-label="Hours" />
+          <input type="number" placeholder="Minutes" value="55" aria-label="Minutes" />
+          <input type="text" placeholder="Note: leave 13:55" aria-label="Note" />
+        </div>
+      </div>
+
+      <div>
+        <label>Frost Risk Tolerance</label>
+        <input type="range" min="0" max="100" value="20" />
+      </div>
+
+      <div>
+        <label>Flowering Duration</label>
+        <select>
+          <option>8 weeks</option>
+          <option>9 weeks</option>
+          <option>10 weeks</option>
+          <option>11 weeks</option>
+        </select>
+      </div>
+
+      <div class="full-width">
+        <label>Vegetative Growth Period</label>
+        <input type="range" min="1" max="12" value="4" />
+      </div>
+    </div>
+  </div>
+</body>
+</html>
